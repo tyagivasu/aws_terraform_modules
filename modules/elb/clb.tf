@@ -24,9 +24,7 @@ resource "aws_elb" "clb" {
   connection_draining         = true
   connection_draining_timeout = 300
 
-  tags = {
-    Name = "test-elb"
-  }
+  tags = var.tags
 }
 
 output "id" {

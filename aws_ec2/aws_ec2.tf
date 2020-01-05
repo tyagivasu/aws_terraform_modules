@@ -3,6 +3,14 @@ provider "aws" {
   version = ">=0.12.8"
 }
 
+locals {
+  common_tags = "${map(
+    "cms-service", "test-service",
+    "cms-service-type", "microservice",
+    "cms-enviornment", "int"
+  )}"
+}
+
 module "ec2_instance" {
   source = "../modules/ec2"
   subnet = "subnet-0e2bdb6a1767e108c"
@@ -10,6 +18,7 @@ module "ec2_instance" {
   public_ip = "false"
   ec2_count = "2"
   instance_type = "t2.micro"
+  tags = local.common_tags
 }
 
 module "classic_lb" {
@@ -19,4 +28,5 @@ module "classic_lb" {
   lb_security_group = "sg-028b744b090904160"
   subnet_id = "subnet-0e4a503e4c4483dbb"
   instances = module.ec2_instance.instance_ids
+  tags = local.common_tags
 }

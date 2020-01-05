@@ -21,3 +21,4 @@ variable "lb_protocol" {
 }
 variable "target_health" {}
 variable "instances" {}
+variable "tags" {}

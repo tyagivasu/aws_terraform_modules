@@ -17,3 +17,4 @@ variable "security_group" {
 variable "public_ip" {
   default = "false"
 }
+variable "tags" {}
