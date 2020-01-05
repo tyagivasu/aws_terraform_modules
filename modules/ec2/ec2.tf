@@ -12,7 +12,12 @@ resource "aws_instance" "ec2" {
   }
 }
 
+#output "instance_ids" {
+#  description = "ec2 details"
+#  value = ["${aws_instance.ec2.*.id}", "${aws_instance.ec2.*.public_ip}", "${aws_instance.ec2.*.private_ip}"]
+#}
+
 output "instance_ids" {
-  description = "ec2 details"
-  value = ["${aws_instance.ec2.*.id}", "${aws_instance.ec2.*.public_ip}", "${aws_instance.ec2.*.private_ip}"]
+  description = "instance ids"
+  value = "${aws_instance.ec2.*.id}"
 }
