@@ -7,7 +7,7 @@ module "ec2_instance" {
   subnet = "subnet-0e2bdb6a1767e108c"
   security_group = "sg-028b744b090904160"
   public_ip = "false"
-  ec2_count = "4"
+  ec2_count = "2"
   instance_type = "t2.micro"
 }
 
