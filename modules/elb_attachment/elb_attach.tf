@@ -1,4 +1,5 @@
 resource "aws_elb_attachment" "this" {
-  elb      = var.lb_id
-  instance = var.instance
+  count = length(var.instance)
+  elb      = var.elb
+  instance = element(var.instance,count.index)
 }

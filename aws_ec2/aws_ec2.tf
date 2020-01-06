@@ -16,7 +16,7 @@ module "ec2_instance" {
   subnet = "subnet-0e2bdb6a1767e108c"
   security_group = "sg-028b744b090904160"
   public_ip = "false"
-  ec2_count = "2"
+  ec2_count = "3"
   instance_type = "t2.micro"
   tags = local.common_tags
 }
@@ -27,6 +27,12 @@ module "classic_lb" {
   target_health = "HTTP:80/test/version"
   lb_security_group = "sg-028b744b090904160"
   subnet_id = "subnet-0e4a503e4c4483dbb"
-  instances = module.ec2_instance.instance_ids
+  #instances = module.ec2_instance.instance_ids
   tags = local.common_tags
+}
+
+module "lb_attachment" {
+  source = "../modules/elb_attachment"
+  elb = module.classic_lb.name
+  instance = module.ec2_instance.instance_ids
 }

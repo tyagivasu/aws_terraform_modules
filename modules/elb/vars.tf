@@ -20,5 +20,5 @@ variable "lb_protocol" {
   default = "http"
 }
 variable "target_health" {}
-variable "instances" {}
+#variable "instances" {}
 variable "tags" {}

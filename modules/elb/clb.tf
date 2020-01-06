@@ -18,7 +18,7 @@ resource "aws_elb" "clb" {
     target              = var.target_health
     interval            = 30
   }
-  instances = var.instances
+  #instances = var.instances
   cross_zone_load_balancing   = true
   idle_timeout                = 300
   connection_draining         = true

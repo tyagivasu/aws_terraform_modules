@@ -1,4 +1,4 @@
-variable "lb_id" {}
+variable "elb" {}
 variable "instance" {
-  type = list(string)
+  type = "list"
 }
