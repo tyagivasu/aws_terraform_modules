@@ -1,0 +1,2 @@
+variable "creds" {}
+variable "profile" {}
