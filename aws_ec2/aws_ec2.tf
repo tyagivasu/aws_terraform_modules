@@ -14,7 +14,7 @@ locals {
 }
 
 module "ec2_instance" {
-  source = "../modules/ec2"
+  source = "github.com/vasu04/aws_terraform_modules/modules/ec2"
   subnet = ""
   security_group = ""
   public_ip = "false"
@@ -26,7 +26,7 @@ module "ec2_instance" {
 }
 
 module "classic_lb" {
-  source = "../modules/elb"
+  source = "github.com/vasu04/aws_terraform_modules/modules/elb"
   lb_name = "test-lb"
   target_health = "HTTP:80/test/version"
   lb_security_group = ""
@@ -36,7 +36,7 @@ module "classic_lb" {
 }
 
 module "lb_attachment" {
-  source = "../modules/elb_attachment"
+  source = "github.com/vasu04/aws_terraform_modules/modules/elb_attachment"
   elb = module.classic_lb.name
   instance = module.ec2_instance.instance_ids
 }
