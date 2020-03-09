@@ -1,0 +1,2 @@
+variable "elb" {}
+variable "asg" {}
