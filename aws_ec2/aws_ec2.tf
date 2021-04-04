@@ -26,8 +26,8 @@ module "ec2_instance" {
 }
 
 module "classic_lb" {
-  source = "../modules/elb"
-  lb_name = "test-lb"
+  source = "github.com/vasu04/aws_terraform_modules/modules/elb"
+  lb_name = ""
   target_health = "HTTP:80/test/version"
   lb_security_group = var.security_group
   subnet_id = var.subnet
@@ -35,7 +35,16 @@ module "classic_lb" {
 }
 
 module "lb_attachment" {
-  source = "../modules/elb_attachment"
+  source = "github.com/vasu04/aws_terraform_modules/modules/elb_attachment"
   elb = module.classic_lb.name
   instance = module.ec2_instance.instance_ids
+}
+
+terraform {
+  backend "s3" {
+    # Replace this with your bucket name!
+    bucket         = ""
+    region         = "us-east-1"
+    encrypt        = true
+  }
 }

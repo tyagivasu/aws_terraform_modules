@@ -25,6 +25,9 @@ resource "aws_elb" "clb" {
   connection_draining_timeout = 300
 
   tags = var.tags
+  lifecycle {
+    ignore_changes = ["name"]
+  }
 }
 
 output "id" {
